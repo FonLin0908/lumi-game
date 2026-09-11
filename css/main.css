@@ -1,0 +1,654 @@
+/* ==================================================
+   基礎設定
+   ================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+
+    background: #050713;
+    color: #ffffff;
+
+    font-family:
+        "Microsoft JhengHei",
+        "Noto Sans TC",
+        sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+
+/* ==================================================
+   遊戲主容器
+   ================================================== */
+
+#game {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #050713;
+}
+
+
+/* ==================================================
+   共用遊戲畫面
+   ================================================== */
+
+.screen {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   標題畫面
+   ================================================== */
+
+#title-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(77, 84, 160, 0.28),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            #11152f 0%,
+            #090c20 55%,
+            #050713 100%
+        );
+}
+
+
+/* ==================================================
+   星空背景
+   ================================================== */
+
+.star-background {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.star-background::before,
+.star-background::after {
+    content: "";
+
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    background: rgba(255, 255, 220, 0.9);
+
+    box-shadow:
+        8vw 12vh rgba(255, 244, 190, 0.8),
+        18vw 28vh rgba(180, 190, 255, 0.7),
+        29vw 15vh rgba(255, 255, 220, 0.8),
+        40vw 32vh rgba(180, 190, 255, 0.6),
+        52vw 10vh rgba(255, 244, 190, 0.8),
+        63vw 24vh rgba(190, 200, 255, 0.8),
+        76vw 16vh rgba(255, 255, 220, 0.7),
+        88vw 35vh rgba(180, 190, 255, 0.7),
+        13vw 62vh rgba(190, 200, 255, 0.6),
+        25vw 78vh rgba(255, 244, 190, 0.7),
+        37vw 68vh rgba(180, 190, 255, 0.7),
+        58vw 74vh rgba(255, 255, 220, 0.8),
+        72vw 61vh rgba(190, 200, 255, 0.6),
+        84vw 82vh rgba(255, 244, 190, 0.7),
+        94vw 67vh rgba(180, 190, 255, 0.7);
+
+    animation:
+        starTwinkle 4s ease-in-out infinite alternate;
+}
+
+.star-background::after {
+    width: 1px;
+    height: 1px;
+
+    opacity: 0.55;
+
+    transform: translate(5vw, 7vh);
+
+    animation-delay: 1.5s;
+}
+
+
+/* ==================================================
+   標題內容
+   ================================================== */
+
+.title-content {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    transform: translateY(-3vh);
+}
+
+
+/* ==================================================
+   標題上方星星
+   ================================================== */
+
+.title-symbol {
+    margin-bottom: 8px;
+
+    color: #ffe89a;
+
+    font-size: clamp(24px, 3vw, 42px);
+
+    text-shadow:
+        0 0 8px rgba(255, 232, 154, 0.7),
+        0 0 20px rgba(255, 232, 154, 0.35);
+
+    animation:
+        titleStar 2.5s ease-in-out infinite;
+}
+
+
+/* ==================================================
+   中文標題
+   ================================================== */
+
+.game-title {
+    margin: 0;
+
+    color: #fff0ad;
+
+    font-size: clamp(42px, 6vw, 78px);
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    transform: translateX(0.07em);
+
+    text-shadow:
+        0 3px 0 rgba(80, 62, 110, 0.7),
+        0 0 14px rgba(255, 232, 154, 0.2);
+}
+
+
+/* ==================================================
+   英文主標題
+   ================================================== */
+
+.game-title-en {
+    margin: 8px 0 0;
+
+    color: #b9c5ff;
+
+    font-size: clamp(16px, 1.7vw, 22px);
+    font-weight: 600;
+
+    letter-spacing: 0.55em;
+
+    transform: translateX(0.275em);
+}
+
+
+/* ==================================================
+   英文副標題
+   ================================================== */
+
+.game-title-en-sub {
+    margin: 4px 0 0;
+
+    color: rgba(185, 197, 255, 0.72);
+
+    font-size: clamp(8px, 0.9vw, 12px);
+    font-weight: 500;
+
+    letter-spacing: 0.28em;
+
+    transform: translateX(0.14em);
+}
+
+
+/* ==================================================
+   中文副標題
+   ================================================== */
+
+.game-subtitle {
+    position: relative;
+
+    margin: 28px 0 36px;
+
+    color: #c7cbea;
+
+    font-size: clamp(13px, 1.4vw, 17px);
+
+    letter-spacing: 0.12em;
+}
+
+.game-subtitle::before,
+.game-subtitle::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+
+    width: 42px;
+    height: 1px;
+
+    background: rgba(199, 203, 234, 0.45);
+}
+
+.game-subtitle::before {
+    right: calc(100% + 14px);
+}
+
+.game-subtitle::after {
+    left: calc(100% + 14px);
+}
+
+
+/* ==================================================
+   主選單
+   ================================================== */
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+
+    width: 220px;
+
+    gap: 9px;
+}
+
+
+/* ==================================================
+   選單按鈕
+   ================================================== */
+
+.menu-button {
+    position: relative;
+
+    width: 100%;
+
+    padding: 10px 18px;
+
+    border: 1px solid transparent;
+
+    background: transparent;
+    color: #d8dcf5;
+
+    font-size: 16px;
+    letter-spacing: 0.15em;
+
+    cursor: pointer;
+
+    transition:
+        color 150ms ease,
+        background 150ms ease,
+        border-color 150ms ease,
+        transform 150ms ease;
+}
+
+.menu-button:hover:not(:disabled),
+.menu-button:focus-visible:not(:disabled) {
+    border-color: rgba(170, 190, 255, 0.35);
+
+    background: rgba(120, 135, 210, 0.1);
+
+    color: #fff0ad;
+
+    outline: none;
+
+    transform: translateX(4px);
+}
+
+
+/* ==================================================
+   選單星星游標
+   ================================================== */
+
+.menu-cursor {
+    position: absolute;
+
+    left: 18px;
+
+    color: #ffe89a;
+
+    opacity: 0;
+
+    transform: translateX(-6px);
+
+    transition:
+        opacity 150ms ease,
+        transform 150ms ease;
+}
+
+.menu-button:hover:not(:disabled) .menu-cursor,
+.menu-button:focus-visible:not(:disabled) .menu-cursor {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* ==================================================
+   無存檔狀態
+   ================================================== */
+
+.menu-button:disabled {
+    color: rgba(216, 220, 245, 0.28);
+
+    cursor: default;
+}
+
+
+/* ==================================================
+   版本資訊
+   ================================================== */
+
+.game-version {
+    position: absolute;
+
+    right: 18px;
+    bottom: 14px;
+
+    color: rgba(190, 195, 220, 0.4);
+
+    font-size: 11px;
+    letter-spacing: 0.08em;
+}
+
+
+/* ==================================================
+   共用
+   ================================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==================================================
+   設定視窗背景
+   ================================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(3, 5, 15, 0.78);
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* ==================================================
+   設定面板
+   ================================================== */
+
+.modal-panel {
+    width: min(440px, 90vw);
+
+    padding: 34px 36px 30px;
+
+    border: 1px solid rgba(180, 195, 255, 0.28);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(92, 103, 182, 0.16),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(24, 28, 62, 0.97),
+            rgba(10, 13, 34, 0.97)
+        );
+
+    box-shadow:
+        0 0 35px rgba(100, 110, 200, 0.18);
+
+    text-align: center;
+}
+
+
+/* ==================================================
+   設定標題
+   ================================================== */
+
+.modal-panel h2 {
+    margin: 0 0 30px;
+
+    color: #fff0ad;
+
+    font-size: 26px;
+    font-weight: 600;
+
+    letter-spacing: 0.2em;
+
+    transform: translateX(0.1em);
+}
+
+
+/* ==================================================
+   設定項目
+   ================================================== */
+
+.setting-item {
+    display: grid;
+
+    grid-template-columns:
+        110px
+        1fr;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+
+    text-align: left;
+}
+
+.setting-item label {
+    color: #d8dcf5;
+
+    font-size: 15px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ==================================================
+   設定控制區
+   ================================================== */
+
+.setting-control {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        48px;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* ==================================================
+   Range
+   ================================================== */
+
+.setting-control input[type="range"] {
+    width: 100%;
+
+    accent-color: #aebeff;
+
+    cursor: pointer;
+}
+
+
+/* ==================================================
+   數值文字
+   ================================================== */
+
+.setting-value {
+    color: #fff0ad;
+
+    font-size: 13px;
+
+    text-align: right;
+}
+
+
+/* ==================================================
+   設定關閉按鈕
+   ================================================== */
+
+.settings-close-button {
+    margin-top: 10px;
+
+    min-width: 140px;
+
+    padding: 9px 20px;
+
+    border:
+        1px solid
+        rgba(180, 195, 255, 0.28);
+
+    background:
+        rgba(110, 125, 205, 0.08);
+
+    color: #d8dcf5;
+
+    cursor: pointer;
+
+    letter-spacing: 0.15em;
+
+    transition:
+        color 150ms ease,
+        border-color 150ms ease,
+        background 150ms ease;
+}
+
+.settings-close-button:hover,
+.settings-close-button:focus-visible {
+    color: #fff0ad;
+
+    border-color:
+        rgba(255, 232, 154, 0.42);
+
+    background:
+        rgba(130, 140, 220, 0.15);
+
+    outline: none;
+}
+
+
+/* ==================================================
+   動畫
+   ================================================== */
+
+@keyframes starTwinkle {
+
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@keyframes titleStar {
+
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+}
+
+
+/* ==================================================
+   小尺寸螢幕
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .title-content {
+        transform: translateY(-2vh);
+    }
+
+    .game-title {
+        font-size: clamp(34px, 10vw, 54px);
+    }
+
+    .game-subtitle {
+        margin-top: 22px;
+        margin-bottom: 28px;
+    }
+
+    .main-menu {
+        width: 200px;
+    }
+
+    .game-subtitle::before,
+    .game-subtitle::after {
+        width: 24px;
+    }
+
+    .modal-panel {
+        padding:
+            28px
+            22px;
+    }
+
+    .setting-item {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+    }
+
+}

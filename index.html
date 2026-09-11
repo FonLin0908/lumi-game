@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>拾光者露米 | Lumi the Starlight Seeker</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+
+    <!-- ==============================
+         遊戲主容器
+         ============================== -->
+    <main id="game">
+
+        <!-- ==============================
+             標題畫面
+             ============================== -->
+        <section id="title-screen" class="screen">
+
+            <!-- 背景星光 -->
+            <div class="star-background" aria-hidden="true"></div>
+
+            <!-- 標題畫面主要內容 -->
+            <div class="title-content">
+
+                <div class="title-symbol">
+                    ✦
+                </div>
+
+                <h1 class="game-title">
+                    拾光者露米
+                </h1>
+
+                <p class="game-title-en">
+                    LUMI
+                </p>
+
+                <p class="game-title-en-sub">
+                    THE STARLIGHT SEEKER
+                </p>
+
+                <p class="game-subtitle">
+                    星光會指引迷途之人
+                </p>
+
+                <!-- 主選單 -->
+                <nav class="main-menu" aria-label="主選單">
+
+                    <button
+                        id="start-game"
+                        class="menu-button"
+                        type="button"
+                    >
+                        <span class="menu-cursor">✦</span>
+                        開始遊戲
+                    </button>
+
+                    <button
+                        id="continue-game"
+                        class="menu-button"
+                        type="button"
+                        disabled
+                    >
+                        <span class="menu-cursor">✦</span>
+                        繼續遊戲
+                    </button>
+
+                    <button
+                        id="open-settings"
+                        class="menu-button"
+                        type="button"
+                    >
+                        <span class="menu-cursor">✦</span>
+                        設定
+                    </button>
+
+                </nav>
+
+            </div>
+
+            <!-- 版本資訊 -->
+            <div class="game-version">
+                v0.1 Prototype
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             設定視窗
+             ============================== -->
+        <div
+            id="settings-modal"
+            class="modal hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="settings-title"
+        >
+
+            <div class="modal-panel">
+
+                <h2 id="settings-title">
+                    設定
+                </h2>
+
+                <!-- 音樂音量 -->
+                <div class="setting-item">
+
+                    <label for="music-volume">
+                        音樂音量
+                    </label>
+
+                    <div class="setting-control">
+
+                        <input
+                            id="music-volume"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="70"
+                        >
+
+                        <span
+                            id="music-volume-value"
+                            class="setting-value"
+                        >
+                            70
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 音效音量 -->
+                <div class="setting-item">
+
+                    <label for="sfx-volume">
+                        音效音量
+                    </label>
+
+                    <div class="setting-control">
+
+                        <input
+                            id="sfx-volume"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="70"
+                        >
+
+                        <span
+                            id="sfx-volume-value"
+                            class="setting-value"
+                        >
+                            70
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 文字速度 -->
+                <div class="setting-item">
+
+                    <label for="text-speed">
+                        文字速度
+                    </label>
+
+                    <div class="setting-control">
+
+                        <input
+                            id="text-speed"
+                            type="range"
+                            min="1"
+                            max="5"
+                            value="3"
+                        >
+
+                        <span
+                            id="text-speed-value"
+                            class="setting-value"
+                        >
+                            普通
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 關閉 -->
+                <button
+                    id="close-settings"
+                    class="settings-close-button"
+                    type="button"
+                >
+                    關閉
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>
