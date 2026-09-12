@@ -44,6 +44,9 @@ input {
     align-items: center;
 
     background: #050713;
+
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 
@@ -652,3 +655,4 @@ input {
     }
 
 }
+

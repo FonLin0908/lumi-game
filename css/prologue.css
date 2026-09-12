@@ -1,0 +1,3583 @@
+/* ==================================================
+   序章畫面
+   ================================================== */
+
+#prologue-screen {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    overflow: hidden;
+
+    background: #000000;
+}
+
+
+/* ==================================================
+   畫面轉場
+   ================================================== */
+
+#screen-transition {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    background: #000000;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 1.2s ease;
+}
+
+#screen-transition.transition-active {
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* ==================================================
+   序章開場
+   ================================================== */
+
+#prologue-intro {
+    position: absolute;
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #000000;
+
+    transition: opacity 1.2s ease;
+}
+
+#prologue-intro.fade-out {
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   序章開場文字
+   ================================================== */
+
+#prologue-intro-text {
+    max-width: 80%;
+
+    margin: 0;
+
+    color: #e8e8ee;
+
+    font-size: clamp(
+        18px,
+        2vw,
+        26px
+    );
+
+    font-weight: 400;
+
+    line-height: 2;
+
+    letter-spacing: 0.12em;
+
+    text-align: center;
+
+    white-space: pre-line;
+
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+#prologue-intro-text.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* ==================================================
+   死亡記憶空間
+   ================================================== */
+
+#memory-space {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background-image:
+        linear-gradient(
+            rgba(8, 8, 18, 0.16),
+            rgba(4, 4, 10, 0.24)
+        ),
+        url("../assets/images/memories/memory-room.webp");
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
+    background-size:
+        cover;
+}
+
+
+/* ==================================================
+   記憶空間星塵
+   ================================================== */
+
+.memory-dust {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.memory-dust::before,
+.memory-dust::after {
+    content: "";
+
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    background: rgba(
+        205,
+        210,
+        255,
+        0.65
+    );
+
+    box-shadow:
+        10vw 18vh rgba(205, 210, 255, 0.45),
+        22vw 66vh rgba(255, 230, 170, 0.35),
+        31vw 28vh rgba(185, 195, 255, 0.45),
+        43vw 76vh rgba(205, 210, 255, 0.35),
+        56vw 20vh rgba(255, 230, 170, 0.3),
+        68vw 58vh rgba(185, 195, 255, 0.4),
+        79vw 31vh rgba(205, 210, 255, 0.4),
+        91vw 72vh rgba(255, 230, 170, 0.3);
+
+    animation:
+        memoryDustFloat
+        6s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.memory-dust::after {
+    opacity: 0.5;
+
+    transform: translate(
+        4vw,
+        10vh
+    );
+
+    animation-delay: 2s;
+}
+
+
+/* ==================================================
+   記憶空間提示
+   ================================================== */
+
+.memory-symbol {
+    margin-bottom: 18px;
+
+    color: rgba(
+        255,
+        235,
+        170,
+        0.85
+    );
+
+    font-size: 28px;
+
+    text-shadow:
+        0 0 12px
+        rgba(255, 230, 150, 0.4);
+
+    animation:
+        memorySymbolPulse
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+.memory-title {
+    margin: 0;
+
+    color: #d8dcf2;
+
+    font-size: clamp(
+        16px,
+        1.6vw,
+        21px
+    );
+
+    font-weight: 400;
+
+    letter-spacing: 0.18em;
+}
+
+.memory-hint {
+    margin: 14px 0 0;
+
+    color: rgba(
+        190,
+        195,
+        220,
+        0.55
+    );
+
+    font-size: 12px;
+
+    letter-spacing: 0.12em;
+}
+
+
+/* ==================================================
+   動畫
+   ================================================== */
+
+@keyframes memoryDustFloat {
+
+    from {
+        opacity: 0.35;
+
+        transform:
+            translateY(0);
+    }
+
+    to {
+        opacity: 0.8;
+
+        transform:
+            translateY(-8px);
+    }
+
+}
+
+
+@keyframes memorySymbolPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+
+        transform:
+            scale(0.92);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.08);
+    }
+
+}
+
+/* ==================================================
+   記憶空間標題區
+   ================================================== */
+
+.memory-space-header {
+    position: absolute;
+
+    top: 7%;
+    left: 50%;
+
+    z-index: 5;
+
+    text-align: center;
+
+    transform:
+        translateX(-50%);
+}
+
+
+/* ==================================================
+   記憶進度
+   ================================================== */
+
+.memory-progress {
+    margin: 12px 0 0;
+
+    color: #ffe7a0;
+
+    font-size: 13px;
+
+    letter-spacing: 0.15em;
+}
+
+
+/* ==================================================
+   記憶物件區
+   ================================================== */
+
+.memory-objects {
+    position: absolute;
+    inset: 0;
+
+    z-index: 3;
+}
+
+
+/* ==================================================
+   記憶物件
+   ================================================== */
+
+.memory-object {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 12px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #d9ddff;
+
+    cursor: pointer;
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        transform 180ms ease,
+        filter 180ms ease,
+        opacity 180ms ease;
+}
+
+
+/* ==================================================
+   記憶物件符號
+   ================================================== */
+
+.memory-object-symbol {
+    display: block;
+
+    font-size: clamp(
+        28px,
+        4vw,
+        48px
+    );
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(185, 195, 255, 0.25)
+        );
+
+    transition:
+        filter 180ms ease,
+        transform 180ms ease;
+}
+
+
+/* ==================================================
+   正式記憶物件圖片
+   ================================================== */
+
+.memory-object-image {
+    display: block;
+
+    width: 90px;
+    height: 90px;
+
+    object-fit: contain;
+
+    pointer-events: none;
+    user-select: none;
+
+    filter:
+        drop-shadow(
+            0 4px 8px
+            rgba(0, 0, 0, 0.65)
+        );
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+/* Hover */
+
+.memory-object:hover
+.memory-object-image {
+    transform:
+        scale(1.08);
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0, 0, 0, 0.75)
+        )
+        drop-shadow(
+            0 0 7px
+            rgba(255, 225, 150, 0.3)
+        );
+}
+
+
+/* 尚未解鎖 */
+
+.memory-object.locked
+.memory-object-image {
+    filter:
+        grayscale(0.8)
+        brightness(0.55)
+        drop-shadow(
+            0 3px 6px
+            rgba(0, 0, 0, 0.7)
+        );
+}
+
+
+/* ==================================================
+   各記憶物件個別尺寸
+   ================================================== */
+
+/* 星形髮飾：第一視覺焦點 */
+.memory-object[data-memory-id="star-hairpin"]
+.memory-object-image {
+    width: 108px;
+    height: 108px;
+
+    transform:
+        rotate(-4deg);
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0, 0, 0, 0.72)
+        )
+        drop-shadow(
+            0 0 11px
+            rgba(255, 220, 140, 0.45)
+        );
+}
+
+
+/* 餐刀：橫向較長 */
+.memory-object[data-memory-id="knife"]
+.memory-object-image {
+    width: 150px;
+    height: 82px;
+
+    transform:
+        rotate(32deg);
+
+    transform-origin: center;
+
+    filter:
+        drop-shadow(
+            0 4px 7px
+            rgba(0, 0, 0, 0.7)
+        );
+}
+
+
+/* 引星鈴 */
+.memory-object[data-memory-id="bell"]
+.memory-object-image {
+    width: 92px;
+    height: 92px;
+
+    transform:
+        rotate(-7deg);
+
+    filter:
+        brightness(0.86)
+        drop-shadow(
+            0 4px 8px
+            rgba(0, 0, 0, 0.72)
+        );
+}
+
+
+/* 舊鍋 */
+.memory-object[data-memory-id="boiling-pot"]
+.memory-object-image {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100px;
+    height: 100px;
+
+    transform:
+        rotate(-2deg);
+
+    filter:
+        drop-shadow(
+            0 5px 9px
+            rgba(0, 0, 0, 0.76)
+        );
+}
+
+
+/* 羊毛 */
+.memory-object[data-memory-id="bloody-wool"]
+.memory-wool-image {
+    width: 92px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-7deg);
+}
+
+.memory-object[data-memory-id="bloody-wool"]
+.memory-red-stain {
+    left: 18%;
+    top: 50%;
+
+    width: 68%;
+    height: 34%;
+
+    opacity: 0.7;
+
+    transform:
+        rotate(-10deg)
+        scaleX(1.1);
+
+    filter:
+        blur(2px);
+}
+
+
+/* ==================================================
+   記憶物件名稱
+   ================================================== */
+
+.memory-object-label {
+    margin-top: 8px;
+
+    padding:
+        4px
+        8px;
+
+    background:
+        rgba(5, 7, 20, 0.72);
+
+    color:
+        rgba(225, 228, 250, 0.9);
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+
+    opacity: 0;
+
+    transform:
+        translateY(4px);
+
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+
+    white-space: nowrap;
+}
+
+
+/* ==================================================
+   Hover
+   ================================================== */
+
+.memory-object:hover,
+.memory-object:focus-visible {
+    outline: none;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.12);
+}
+
+.memory-object:hover
+.memory-object-symbol,
+.memory-object:focus-visible
+.memory-object-symbol {
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(255, 232, 160, 0.75)
+        );
+}
+
+.memory-object:hover
+.memory-object-label,
+.memory-object:focus-visible
+.memory-object-label {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* ==================================================
+   已尋回記憶
+   ================================================== */
+
+.memory-object.discovered
+.memory-object-symbol {
+    opacity: 0.45;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(170, 180, 230, 0.3)
+        );
+}
+
+.memory-object.discovered::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 2px;
+    right: 4px;
+
+    color: #ffe89a;
+
+    font-size: 12px;
+}
+
+
+/* ==================================================
+   記憶對話層
+   ================================================== */
+
+.memory-dialogue {
+    position: absolute;
+    inset: 0;
+
+    z-index: 50;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    padding-bottom: 7vh;
+
+    background:
+        rgba(0, 0, 0, 0.22);
+
+    cursor: pointer;
+}
+
+
+/* ==================================================
+   記憶對話框
+   ================================================== */
+
+.memory-dialogue-panel {
+    position: relative;
+
+    width:
+        min(
+            720px,
+            86vw
+        );
+
+    min-height: 150px;
+
+    padding:
+        24px
+        58px
+        26px
+        28px;
+
+    border:
+        1px solid
+        rgba(180, 190, 240, 0.28);
+
+    background:
+        rgba(8, 10, 27, 0.94);
+
+    box-shadow:
+        0 0 30px
+        rgba(50, 55, 100, 0.25);
+}
+
+
+/* ==================================================
+   對話物件名稱
+   ================================================== */
+
+.memory-dialogue-name {
+    margin:
+        0
+        0
+        14px;
+
+    color: #ffe89a;
+
+    font-size: 14px;
+
+    letter-spacing: 0.14em;
+}
+
+
+/* ==================================================
+   對話文字
+   ================================================== */
+
+.memory-dialogue-text {
+    margin: 0;
+
+    color: #e5e7f2;
+
+    font-size:
+        clamp(
+            14px,
+            1.4vw,
+            17px
+        );
+
+    line-height: 1.9;
+
+    letter-spacing: 0.06em;
+}
+
+
+/* ==================================================
+   下一句按鈕
+   ================================================== */
+
+.memory-dialogue-next {
+    position: absolute;
+
+    right: 20px;
+    bottom: 18px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ffe89a;
+
+    cursor: inherit;
+    pointer-events: none;
+
+    font-size: 15px;
+
+    animation:
+        dialogueArrow
+        1s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* ==================================================
+   記憶完成
+   ================================================== */
+
+.memory-completion {
+    position: absolute;
+    inset: 0;
+
+    z-index: 60;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(2, 3, 10, 0.88);
+
+    opacity: 0;
+
+    transition:
+        opacity 1.5s ease;
+}
+
+.memory-completion.visible {
+    opacity: 1;
+}
+
+.memory-completion-symbol {
+    color: #ffe89a;
+
+    font-size: 34px;
+
+    text-shadow:
+        0 0 18px
+        rgba(255, 230, 150, 0.55);
+
+    animation:
+        memoryCompletionPulse
+        1.8s
+        ease-in-out
+        infinite;
+}
+
+.memory-completion p {
+    margin:
+        22px
+        0
+        0;
+
+    color: #e5e7f2;
+
+    font-size:
+        clamp(
+            16px,
+            1.7vw,
+            21px
+        );
+
+    letter-spacing: 0.15em;
+}
+
+
+/* ==================================================
+   動畫
+   ================================================== */
+
+@keyframes dialogueArrow {
+
+    from {
+        transform:
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateY(4px);
+    }
+
+}
+
+
+@keyframes memoryCompletionPulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+
+        transform:
+            scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.12);
+    }
+
+}
+
+/* ==================================================
+   尚未解鎖的記憶物件
+   ================================================== */
+
+.memory-object.locked {
+    opacity: 0.35;
+
+    filter: grayscale(0.8);
+}
+
+/* ==================================================
+   沸騰的鍋
+
+   鍋子從遊戲開始就正常存在於場景中。
+   locked 只代表「記憶尚未解鎖」，
+   不代表物件本身需要變暗。
+   ================================================== */
+
+.memory-object[data-memory-id="boiling-pot"].locked {
+    opacity: 1;
+    filter: none;
+}
+
+.memory-object[data-memory-id="boiling-pot"].locked
+.memory-object-image {
+    filter:
+        drop-shadow(
+            0 5px 9px
+            rgba(0, 0, 0, 0.76)
+        );
+}
+
+
+/*
+ * 被鎖定的鍋仍然可以點擊，
+ * 但不會被當成已尋回記憶。
+ */
+
+.memory-object.locked:hover,
+.memory-object.locked:focus-visible {
+    transform:
+        translate(-50%, -50%)
+        scale(1.04);
+}
+
+
+/* ==================================================
+   完全隱藏的記憶物件
+   ================================================== */
+
+.memory-object.memory-hidden {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -42%)
+        scale(0.78);
+}
+
+
+/* ==================================================
+   記憶物件解鎖演出
+   ================================================== */
+
+.memory-object.memory-revealing {
+    visibility: visible;
+
+    pointer-events: none;
+
+    animation:
+        memoryObjectReveal
+        1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+}
+
+
+/* ==================================================
+   引星鈴解鎖光芒
+   ================================================== */
+
+.memory-object[data-memory-id="bell"].memory-revealing
+.memory-object-image {
+    animation:
+        memoryBellGlow
+        1s
+        ease-out
+        forwards;
+}
+
+
+/* ==================================================
+   解鎖動畫
+   ================================================== */
+
+@keyframes memoryObjectReveal {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -38%)
+            scale(0.72);
+    }
+
+    45% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -54%)
+            scale(1.08);
+    }
+
+    70% {
+        transform:
+            translate(-50%, -48%)
+            scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+@keyframes memoryBellGlow {
+
+    0% {
+        filter:
+            brightness(2)
+            drop-shadow(
+                0 0 22px
+                rgba(255, 230, 155, 0.9)
+            );
+    }
+
+    45% {
+        filter:
+            brightness(1.4)
+            drop-shadow(
+                0 0 16px
+                rgba(255, 225, 145, 0.65)
+            );
+    }
+
+    100% {
+        filter:
+            brightness(0.86)
+            drop-shadow(
+                0 4px 8px
+                rgba(0, 0, 0, 0.72)
+            );
+    }
+}
+
+
+/* ==================================================
+   記憶抉擇
+   ================================================== */
+
+.memory-choice {
+    position: absolute;
+    inset: 0;
+
+    z-index: 70;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(2, 3, 12, 0.72);
+}
+
+
+/* ==================================================
+   選擇面板
+   ================================================== */
+
+.memory-choice-panel {
+    width:
+        min(
+            440px,
+            84vw
+        );
+
+    padding:
+        30px;
+
+    border:
+        1px solid
+        rgba(190, 195, 235, 0.3);
+
+    background:
+        rgba(8, 10, 27, 0.96);
+
+    box-shadow:
+        0 0 35px
+        rgba(40, 45, 90, 0.3);
+
+    text-align: center;
+}
+
+
+/* ==================================================
+   選擇標題
+   ================================================== */
+
+.memory-choice-title {
+    margin:
+        0
+        0
+        24px;
+
+    color: #e7e9f5;
+
+    font-size: 17px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ==================================================
+   選項排列
+   ================================================== */
+
+.memory-choice-buttons {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* ==================================================
+   選項按鈕
+   ================================================== */
+
+.memory-choice-button {
+    width: 100%;
+
+    padding:
+        13px
+        18px;
+
+    border:
+        1px solid
+        rgba(255, 232, 154, 0.45);
+
+    background:
+        rgba(255, 232, 154, 0.08);
+
+    color: #ffe89a;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+
+.memory-choice-button:hover,
+.memory-choice-button:focus-visible {
+    outline: none;
+
+    background:
+        rgba(255, 232, 154, 0.16);
+
+    border-color:
+        rgba(255, 232, 154, 0.8);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ==================================================
+   返回選項
+   ================================================== */
+
+.memory-choice-button.secondary {
+    border-color:
+        rgba(185, 190, 225, 0.25);
+
+    background:
+        rgba(185, 190, 225, 0.04);
+
+    color:
+        rgba(220, 223, 240, 0.72);
+}
+
+
+.memory-choice-button.secondary:hover,
+.memory-choice-button.secondary:focus-visible {
+    border-color:
+        rgba(185, 190, 225, 0.55);
+
+    background:
+        rgba(185, 190, 225, 0.1);
+}
+
+/* ==================================================
+   記憶重組
+   ================================================== */
+
+.memory-puzzle {
+    position: absolute;
+    inset: 0;
+
+    z-index: 20;
+
+    overflow: hidden;
+
+    /*
+     * Puzzle 專用背景。
+     * 上層漸層稍微壓暗畫面，
+     * 避免背景搶走記憶碎片與中央重組區的注意力。
+     */
+    background-image:
+        radial-gradient(
+            circle at 50% 52%,
+            rgba(35, 38, 78, 0.02) 0%,
+            rgba(8, 10, 28, 0.10) 48%,
+            rgba(2, 3, 12, 0.34) 100%
+        ),
+        url("../assets/images/memories/puzzle-memory-space.webp");
+
+    background-position:
+        center,
+        center;
+
+    background-repeat:
+        no-repeat,
+        no-repeat;
+
+    background-size:
+        cover,
+        cover;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    /*
+     * Puzzle 結束時會使用。
+     * 目前先準備好，不影響既有流程。
+     */
+    opacity: 1;
+
+    transition:
+        opacity 1.15s ease;
+}
+
+
+/* ==================================================
+   記憶重組標題
+   ================================================== */
+
+.memory-puzzle-header {
+    position: absolute;
+
+    top: 6%;
+    left: 50%;
+
+    z-index: 5;
+
+    transform:
+        translateX(-50%);
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+
+.memory-puzzle-title {
+    margin: 0;
+
+    color: #d8daf0;
+
+    font-size:
+        clamp(
+            18px,
+            1.8vw,
+            25px
+        );
+
+    font-weight: 400;
+
+    letter-spacing: 0.18em;
+}
+
+
+.memory-puzzle-hint {
+    margin:
+        14px
+        0
+        0;
+
+    color:
+        rgba(
+            190,
+            194,
+            220,
+            0.55
+        );
+
+    font-size: 13px;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ==================================================
+   散落碎片區
+   ================================================== */
+
+.puzzle-fragments {
+    position: absolute;
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   單一記憶碎片
+   ================================================== */
+
+.puzzle-fragment {
+    position: absolute;
+
+    width: 130px;
+
+    min-height: 74px;
+
+    padding:
+        12px
+        14px;
+
+    border:
+        1px solid
+        rgba(
+            190,
+            194,
+            230,
+            0.28
+        );
+
+    border-radius: 8px;
+
+    background:
+        rgba(
+            18,
+            21,
+            42,
+            0.82
+        );
+
+    box-shadow:
+        0 0 18px
+        rgba(
+            120,
+            130,
+            210,
+            0.08
+        );
+
+    color: #d5d7ea;
+
+    text-align: center;
+
+    pointer-events: auto;
+
+    cursor: default;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.puzzle-fragment:hover {
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        scale(1.05);
+
+    border-color:
+        rgba(
+            235,
+            218,
+            145,
+            0.55
+        );
+
+    box-shadow:
+        0 0 22px
+        rgba(
+            220,
+            205,
+            140,
+            0.12
+        );
+}
+
+
+/* ==================================================
+   碎片符號
+   ================================================== */
+
+.puzzle-fragment-symbol {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #f0df9d;
+
+    font-size: 1.35rem;
+}
+
+
+/* ==================================================
+   碎片名稱
+   ================================================== */
+
+.puzzle-fragment-name {
+    display: block;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 0.06em;
+}
+
+
+/* ==================================================
+   中央記憶重組區
+   ================================================== */
+
+.puzzle-reconstruction-zone {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    z-index: 3;
+
+    width: min(
+        360px,
+        40vw
+    );
+
+    height: min(
+        250px,
+        34vh
+    );
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(
+            225,
+            225,
+            255,
+            0.10
+        );
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                120,
+                125,
+                200,
+                0.07
+            )
+            0%,
+
+            rgba(
+                55,
+                60,
+                120,
+                0.025
+            )
+            48%,
+
+            transparent
+            72%
+        );
+
+    box-shadow:
+        inset
+        0
+        0
+        55px
+        rgba(
+            150,
+            155,
+            230,
+            0.035
+        ),
+
+        0
+        0
+        50px
+        rgba(
+            115,
+            125,
+            220,
+            0.035
+        );
+}
+
+
+/* ==================================================
+   重組區星光
+   ================================================== */
+
+.puzzle-zone-symbol {
+    color: #e9d98e;
+
+    font-size: 2rem;
+
+    text-shadow:
+        0 0 14px
+        rgba(
+            235,
+            215,
+            140,
+            0.35
+        );
+
+    animation:
+        memorySymbolPulse
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* ==================================================
+   重組區文字
+   ================================================== */
+
+.puzzle-zone-title {
+    margin:
+        12px
+        0
+        0;
+
+    color: #d7d9eb;
+
+    font-size: 1rem;
+
+    letter-spacing: 0.15em;
+}
+
+
+.puzzle-zone-hint {
+    margin:
+        8px
+        0
+        0;
+
+    color:
+        rgba(
+            190,
+            194,
+            220,
+            0.45
+        );
+
+    font-size: 0.75rem;
+}
+
+/* ==================================================
+   記憶碎片拖曳
+   ================================================== */
+
+.puzzle-fragment {
+    touch-action: none;
+
+    cursor: grab;
+}
+
+
+.puzzle-fragment.dragging {
+    cursor: grabbing;
+
+    opacity: 0.9;
+
+    border-color:
+        rgba(
+            240,
+            220,
+            150,
+            0.75
+        );
+
+    box-shadow:
+        0 0 28px
+        rgba(
+            220,
+            205,
+            140,
+            0.2
+        );
+
+    transition: none;
+}
+
+
+/*
+ * 已放進中央區。
+ */
+
+.puzzle-fragment.placed {
+    border-color:
+        rgba(
+            225,
+            215,
+            165,
+            0.48
+        );
+
+    background:
+        rgba(
+            35,
+            37,
+            66,
+            0.92
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            220,
+            205,
+            145,
+            0.12
+        );
+}
+
+
+/* ==================================================
+   拖曳進入重組區
+   ================================================== */
+
+.puzzle-reconstruction-zone {
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.puzzle-reconstruction-zone.drag-over {
+
+    border-color:
+        rgba(
+            238,
+            220,
+            150,
+            0.7
+        );
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                125,
+                120,
+                170,
+                0.22
+            ),
+            rgba(
+                30,
+                31,
+                60,
+                0.08
+            )
+            60%,
+            transparent 75%
+        );
+
+    box-shadow:
+        inset
+        0
+        55px
+        rgba(
+            150,
+            145,
+            200,
+            0.08
+        ),
+        0
+        0
+        38px
+        rgba(
+            220,
+            205,
+            145,
+            0.14
+        );
+}
+
+/* ==================================================
+   Puzzle INVALID
+   ================================================== */
+
+.puzzle-reconstruction-zone.invalid {
+
+    border-color:
+        rgba(
+            160,
+            150,
+            175,
+            0.32
+        );
+
+    box-shadow:
+        inset
+        0
+        0
+        35px
+        rgba(
+            75,
+            70,
+            100,
+            0.08
+        );
+
+    opacity: 0.78;
+}
+
+
+.puzzle-reconstruction-zone.invalid
+.puzzle-zone-symbol {
+
+    opacity: 0.35;
+}
+
+
+/* ==================================================
+   正確記憶產生共鳴
+   ================================================== */
+
+.puzzle-fragment.combining {
+    pointer-events: none;
+
+    border-color:
+        rgba(
+            255,
+            232,
+            154,
+            0.85
+        );
+
+    box-shadow:
+        0
+        0
+        30px
+        rgba(
+            255,
+            230,
+            150,
+            0.35
+        );
+
+    animation:
+        puzzleFragmentResonance
+        0.55s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* ==================================================
+   合成時收縮
+   ================================================== */
+
+.puzzle-fragment.combine-collapse {
+
+    opacity: 0;
+
+    transform:
+        scale(0.25);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+
+/* ==================================================
+   中央重組動畫
+   ================================================== */
+
+.puzzle-reconstruction-zone.combining {
+
+    border-color:
+        rgba(
+            255,
+            232,
+            154,
+            0.72
+        );
+
+    box-shadow:
+        inset
+        0
+        55px
+        rgba(
+            255,
+            225,
+            140,
+            0.12
+        ),
+        0
+        45px
+        rgba(
+            255,
+            225,
+            140,
+            0.18
+        );
+}
+
+
+.puzzle-reconstruction-zone.combining
+.puzzle-zone-symbol {
+
+    animation:
+        puzzleZoneCombine
+        0.7s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* ==================================================
+   大型記憶碎片
+   ================================================== */
+
+.puzzle-fragment-large {
+    width: 150px;
+
+    min-height: 88px;
+
+    border-color:
+        rgba(
+            255,
+            228,
+            150,
+            0.38
+        );
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(
+                110,
+                105,
+                160,
+                0.24
+            ),
+            rgba(
+                20,
+                22,
+                48,
+                0.94
+            )
+        );
+
+    box-shadow:
+        0
+        0
+        22px
+        rgba(
+            215,
+            200,
+            140,
+            0.10
+        );
+}
+
+
+/* ==================================================
+   新生成大型碎片
+   ================================================== */
+
+.puzzle-fragment.generated {
+
+    opacity: 0;
+
+    transition:
+        left 0.65s ease,
+        top 0.65s ease,
+        transform 0.65s ease,
+        opacity 0.35s ease;
+}
+
+
+.puzzle-fragment.generated-visible {
+
+    opacity: 1;
+}
+
+
+/* ==================================================
+   最終重組
+   ================================================== */
+
+.puzzle-reconstruction-zone.final-complete {
+
+    border-color:
+        rgba(
+            255,
+            235,
+            165,
+            0.9
+        );
+
+    box-shadow:
+        inset
+        0
+        70px
+        rgba(
+            255,
+            230,
+            150,
+            0.15
+        ),
+        0
+        70px
+        rgba(
+            255,
+            225,
+            145,
+            0.26
+        );
+}
+
+
+/* ==================================================
+   Puzzle 動畫
+   ================================================== */
+
+@keyframes puzzleFragmentResonance {
+
+    from {
+
+        filter:
+            brightness(1);
+
+    }
+
+    to {
+
+        filter:
+            brightness(1.35);
+
+    }
+
+}
+
+
+@keyframes puzzleZoneCombine {
+
+    from {
+
+        opacity: 0.55;
+
+        transform:
+            scale(0.9);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15);
+
+    }
+
+}
+
+/* ==================================================
+   特殊記憶碎片：沸騰的鍋
+   ================================================== */
+
+.puzzle-fragment-special {
+    border-color:
+        rgba(
+            220,
+            150,
+            130,
+            0.5
+        );
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(
+                120,
+                55,
+                60,
+                0.22
+            ),
+            rgba(
+                25,
+                20,
+                38,
+                0.94
+            )
+        );
+
+    box-shadow:
+        0
+        0
+        24px
+        rgba(
+            165,
+            80,
+            75,
+            0.12
+        );
+}
+
+
+.puzzle-fragment-special
+.puzzle-fragment-symbol {
+    color:
+        rgba(
+            235,
+            175,
+            135,
+            0.9
+        );
+}
+
+/* ==================================================
+   最終完整記憶
+   ================================================== */
+
+.puzzle-final-memory {
+    position: absolute;
+
+    z-index: 200;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.35);
+
+    transition:
+        left 0.9s ease,
+        top 0.9s ease,
+        transform 0.9s ease,
+        opacity 0.65s ease,
+        box-shadow 0.8s ease;
+
+    box-shadow:
+        0
+        0
+        30px
+        rgba(
+            255,
+            235,
+            175,
+            0.18
+        );
+}
+
+
+.puzzle-final-memory.visible {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+
+/* ==================================================
+   Puzzle 最終轉場
+   ================================================== */
+
+#memory-puzzle.final-transition
+.memory-puzzle-header,
+
+#memory-puzzle.final-transition
+#puzzle-reconstruction-zone {
+
+    opacity: 0;
+
+    transition:
+        opacity 0.75s ease;
+
+}
+
+
+/*
+ * 其他尚未使用的碎片淡出。
+ */
+
+#memory-puzzle.final-transition
+.puzzle-fragment:not(.puzzle-final-memory) {
+
+    opacity: 0;
+
+    transition:
+        opacity 0.65s ease;
+
+    pointer-events: none;
+
+}
+
+
+/* ==================================================
+   Puzzle 整體退場
+   ================================================== */
+
+.memory-puzzle {
+    transition:
+        opacity 1.15s ease,
+        filter 1.15s ease;
+}
+
+
+/*
+ * 記憶重組完成後，
+ * 星空空間逐漸沉入黑暗。
+ */
+
+.memory-puzzle.puzzle-exit {
+    opacity: 0;
+
+    filter:
+        brightness(0.25)
+        blur(3px);
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   完整記憶置中
+   ================================================== */
+
+.puzzle-final-memory.centered {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.18);
+
+}
+
+
+/* ==================================================
+   完整記憶甦醒
+   ================================================== */
+
+.puzzle-final-memory.awakening {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.45);
+
+    box-shadow:
+        0
+        0
+        80px
+        rgba(
+            255,
+            238,
+            185,
+            0.55
+        );
+
+}
+
+
+/* ==================================================
+   最終記憶白光
+   ================================================== */
+
+.memory-final-flash {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 500;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(
+                255,
+                252,
+                235,
+                1
+            )
+            0%,
+
+            rgba(
+                245,
+                235,
+                220,
+                0.94
+            )
+            38%,
+
+            rgba(
+                220,
+                215,
+                235,
+                0.72
+            )
+            68%,
+
+            rgba(
+                200,
+                195,
+                220,
+                0
+            )
+            100%
+        );
+
+    transition:
+        opacity 1.1s ease;
+
+}
+
+
+.memory-final-flash.visible {
+
+    opacity: 1;
+
+}
+
+
+/* ==================================================
+   最終記憶：黑幕章節文字
+   ================================================== */
+
+.death-memory-chapter-text {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    z-index: 80;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    width:
+        min(
+            900px,
+            86vw
+        );
+
+    color:
+        rgba(
+            245,
+            243,
+            255,
+            0.96
+        );
+
+    font-size:
+        clamp(
+            24px,
+            2.4vw,
+            38px
+        );
+
+    font-weight: 400;
+
+    line-height: 1.8;
+
+    letter-spacing: 0.16em;
+
+    text-align: center;
+
+    text-shadow:
+        0 2px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.95
+        );
+
+    opacity: 0;
+
+    transform:
+        translate(
+            -50%,
+            -46%
+        );
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+
+    pointer-events: none;
+}
+
+
+.death-memory-chapter-text.visible {
+    opacity: 1;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+}
+
+
+/* ==================================================
+   完整死亡記憶
+   ================================================== */
+
+.complete-death-memory {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #05050a;
+
+    z-index: 40;
+}
+
+/* ==================================================
+   最終記憶：死亡前快速閃回
+   ================================================== */
+
+.death-memory-background.memory-flashback {
+    animation:
+        deathMemoryFlashback
+        1s
+        ease-out
+        forwards;
+}
+
+
+@keyframes deathMemoryFlashback {
+
+    0% {
+        transform:
+            scale(1.08);
+
+        filter:
+            blur(4px)
+            brightness(1.3);
+
+        opacity: 0.35;
+    }
+
+
+    25% {
+        opacity: 1;
+
+        filter:
+            blur(1px)
+            brightness(1.12);
+    }
+
+
+    100% {
+        transform:
+            scale(1);
+
+        filter:
+            blur(0)
+            brightness(1);
+
+        opacity: 1;
+    }
+
+}
+
+
+/* ==================================================
+   場景背景
+   ================================================== */
+
+.death-memory-background {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transform: scale(1.02);
+}
+
+
+/* ==================================================
+   暗角
+   ================================================== */
+
+.death-memory-overlay {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 45%,
+            rgba(0, 0, 0, 0.55) 100%
+        );
+}
+
+
+/* ==================================================
+   台詞
+   ================================================== */
+
+.death-memory-dialogue {
+    position: absolute;
+
+    left: 50%;
+    bottom: 10%;
+
+    transform:
+        translate(-50%, 12px);
+
+    width: min(
+        800px,
+        calc(100vw - 48px)
+    );
+
+    text-align: center;
+
+    color: #f3f0ff;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+    z-index: 10;
+}
+
+
+.death-memory-dialogue.visible {
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+.death-memory-speaker {
+    margin-bottom: 10px;
+
+    font-size: 14px;
+
+    color: rgba(
+        230,
+        220,
+        255,
+        0.65
+    );
+}
+
+
+.death-memory-text {
+    font-size:
+        clamp(
+            20px,
+            2.2vw,
+            30px
+        );
+
+    letter-spacing: 0.12em;
+
+    line-height: 1.8;
+
+    text-shadow:
+        0 2px 14px
+        rgba(0, 0, 0, 0.85);
+}
+
+
+/*
+ * 露米內心話。
+ */
+
+.death-memory-dialogue.thought
+.death-memory-text {
+
+    font-style: italic;
+
+    color: rgba(
+        245,
+        242,
+        255,
+        0.92
+    );
+
+}
+
+/* ==================================================
+   死亡記憶轉場
+   黑幕 + 微弱暗紅
+   ================================================== */
+
+.death-memory-transition {
+    position: absolute;
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        linear-gradient(
+            rgba(15, 0, 4, 0.96),
+            rgba(3, 0, 1, 1)
+        );
+
+    transition:
+        opacity 0.9s ease;
+}
+
+
+.death-memory-transition.visible {
+    opacity: 1;
+}
+
+/* ==================================================
+   記憶對話：內心獨白
+   ================================================== */
+
+.memory-dialogue.thought
+.memory-dialogue-name {
+    display: none;
+}
+
+
+.memory-dialogue.thought
+.memory-dialogue-text {
+    font-style: italic;
+
+    color:
+        rgba(
+            245,
+            240,
+            255,
+            0.95
+        );
+
+    letter-spacing: 0.12em;
+}
+
+/* ==================================================
+   完整死亡記憶播放時
+   不讓對話層把整個場景壓暗
+   ================================================== */
+
+#memory-space.complete-memory-playing
+.memory-dialogue {
+    background: transparent;
+}
+
+/* ==================================================
+   電影式字幕
+   ================================================== */
+
+.memory-dialogue.cinematic {
+    background: transparent;
+
+    padding-bottom: 10vh;
+
+    align-items: flex-end;
+}
+
+
+/*
+ * 移除原本對話框外觀。
+ */
+
+.memory-dialogue.cinematic
+.memory-dialogue-panel {
+    width: min(900px, 88vw);
+
+    min-height: 0;
+
+    padding: 16px 30px;
+
+    border: none;
+
+    background: transparent;
+
+    box-shadow: none;
+
+    text-align: center;
+}
+
+
+/*
+ * 動畫模式完全不顯示角色名稱。
+ */
+
+.memory-dialogue.cinematic
+.memory-dialogue-name {
+    display: none;
+}
+
+
+/*
+ * 基本字幕。
+ */
+
+.memory-dialogue.cinematic
+.memory-dialogue-text {
+    font-size:
+        clamp(
+            26px,
+            2.2vw,
+            36px
+        );
+
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.08em;
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 1),
+        0 0 12px rgba(0, 0, 0, 0.95),
+        0 0 26px rgba(0, 0, 0, 0.8);
+}
+
+
+/*
+ * 不顯示原本的 ▼。
+ */
+
+.memory-dialogue.cinematic
+.memory-dialogue-next {
+    display: none;
+}
+
+
+/* ==================================================
+   露米
+   ================================================== */
+
+.memory-dialogue.cinematic.character-lumi
+.memory-dialogue-text {
+    color: rgba(255, 255, 255, 0.96);
+}
+
+
+/* ==================================================
+   貓燁
+   ================================================== */
+
+.memory-dialogue.cinematic.character-maoya
+.memory-dialogue-text {
+    color: #c9a7ff;
+}
+
+
+/* ==================================================
+   內心獨白
+   ================================================== */
+
+.memory-dialogue.cinematic.thought
+.memory-dialogue-text {
+    font-style: italic;
+}
+
+/* ==================================================
+   序章結尾
+   ================================================== */
+
+.prologue-ending-text {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    z-index: 100;
+
+    opacity: 0;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.95
+        );
+
+    font-size:
+        clamp(
+            30px,
+            3vw,
+            48px
+        );
+
+    font-weight: 500;
+
+    letter-spacing: 0.3em;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 16px
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    transition:
+        opacity 1.5s ease;
+}
+
+
+.prologue-ending-text.visible {
+    opacity: 1;
+}
+
+.memory-wool-clue {
+    position: absolute;
+
+    width: 180px;
+    height: 120px;
+
+    cursor: pointer;
+}
+
+
+/* 地面的暗紅色痕跡 */
+
+.memory-red-stain {
+    position: absolute;
+
+    left: 15%;
+    top: 45%;
+
+    width: 75%;
+    height: 42%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(92, 12, 18, 0.88) 0%,
+            rgba(74, 8, 14, 0.78) 42%,
+            rgba(48, 5, 10, 0.48) 68%,
+            transparent 74%
+        );
+
+    transform:
+        rotate(-8deg)
+        scaleX(1.15);
+
+    filter:
+        blur(1.5px);
+
+    opacity: 0.85;
+
+    pointer-events: none;
+}
+
+
+/* 羊毛 */
+
+.memory-wool-image {
+    position: absolute;
+
+    left: 50%;
+    top: 45%;
+
+    width: 115px;
+    height: auto;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-6deg);
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   舊鍋視覺容器
+   ================================================== */
+
+.memory-pot-visual {
+    position: relative;
+
+    display: block;
+
+    width: 100px;
+    height: 100px;
+
+    pointer-events: none;
+}
+
+/* ==================================================
+   舊鍋甦醒：爐火
+   ================================================== */
+
+.memory-pot-fire {
+    position: absolute;
+
+    left: 50%;
+    bottom: -10px;
+
+    z-index: 1;
+
+    width: 76px;
+    height: 40px;
+
+    transform:
+        translateX(-50%)
+        scale(0.6);
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 235, 145, 0.95) 0%,
+            rgba(255, 165, 65, 0.82) 28%,
+            rgba(225, 90, 30, 0.55) 52%,
+            rgba(150, 40, 20, 0.18) 70%,
+            transparent 78%
+        );
+
+    filter:
+        blur(4px);
+}
+
+
+.memory-object.pot-awakened
+.memory-pot-fire {
+    animation:
+        memoryPotFireIgnite
+        700ms
+        ease-out
+        forwards,
+        memoryPotFireFlicker
+        1.25s
+        ease-in-out
+        700ms
+        infinite;
+}
+
+@keyframes memoryPotFireIgnite {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(8px)
+            scale(0.45);
+    }
+
+    to {
+        opacity: 0.9;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes memoryPotFireFlicker {
+
+    0%,
+    100% {
+        opacity: 0.72;
+
+        transform:
+            translateX(-50%)
+            scaleX(0.96)
+            scaleY(0.9);
+    }
+
+    50% {
+        opacity: 0.95;
+
+        transform:
+            translateX(-50%)
+            translateY(-3px)
+            scaleX(1.06)
+            scaleY(1.08);
+    }
+}
+
+/* ==================================================
+   舊鍋甦醒：蒸氣
+   ================================================== */
+
+.memory-pot-steam {
+    position: absolute;
+
+    left: 50%;
+    top: -32px;
+
+    z-index: 4;
+
+    width: 70px;
+    height: 70px;
+
+    transform:
+        translateX(-50%);
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.memory-object.pot-awakened
+.memory-pot-steam {
+    opacity: 1;
+}
+
+.memory-pot-steam::before,
+.memory-pot-steam::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 18px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 250, 240, 0.55) 0%,
+            rgba(230, 225, 220, 0.26) 45%,
+            transparent 72%
+        );
+
+    filter:
+        blur(5px);
+
+    opacity: 0;
+}
+
+.memory-pot-steam::before {
+    left: 13px;
+
+    animation:
+        memoryPotSteamLeft
+        2.4s
+        ease-out
+        infinite;
+}
+
+
+.memory-pot-steam::after {
+    right: 12px;
+
+    animation:
+        memoryPotSteamRight
+        2.8s
+        ease-out
+        0.6s
+        infinite;
+}
+
+@keyframes memoryPotSteamLeft {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            translateX(0)
+            scale(0.65);
+    }
+
+    25% {
+        opacity: 0.65;
+    }
+
+    60% {
+        opacity: 0.38;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-40px)
+            translateX(-8px)
+            scale(1.25);
+    }
+}
+
+
+@keyframes memoryPotSteamRight {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            translateX(0)
+            scale(0.7);
+    }
+
+    30% {
+        opacity: 0.55;
+    }
+
+    65% {
+        opacity: 0.32;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-44px)
+            translateX(9px)
+            scale(1.3);
+    }
+}
+
+/* ==================================================
+   記憶物件放大檢視
+   ================================================== */
+
+.memory-inspector {
+    position: absolute;
+    inset: 0;
+
+    z-index: 40;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   Inspector 背景
+   ================================================== */
+
+.memory-inspector-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(25, 22, 50, 0.9),
+            rgba(4, 5, 15, 0.97)
+        );
+
+    backdrop-filter:
+        blur(5px);
+}
+
+
+/* ==================================================
+   Inspector 主體
+   ================================================== */
+
+.memory-inspector-content {
+    position: relative;
+
+    z-index: 1;
+
+    width:
+        min(
+            900px,
+            92vw
+        );
+
+    height:
+        min(
+            760px,
+            88vh
+        );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ==================================================
+   標題
+   ================================================== */
+
+.memory-inspector-title {
+    margin:
+        0
+        0
+        20px;
+
+    color: #f3e7b2;
+
+    font-size:
+        clamp(
+            18px,
+            2vw,
+            25px
+        );
+
+    letter-spacing: 0.18em;
+
+    text-shadow:
+        0 0 12px
+        rgba(255, 226, 140, 0.25);
+}
+
+
+/* ==================================================
+   Inspector 物件區域
+   ================================================== */
+
+.memory-inspector-object {
+    position: relative;
+
+    flex: 1;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 0;
+}
+
+
+/* ==================================================
+   Inspector 圖片容器
+
+   圖片與熱點共用同一個定位基準。
+   ================================================== */
+
+.memory-inspector-image-wrapper {
+    position: relative;
+
+    width:
+        min(
+            760px,
+            82vw
+        );
+
+    height:
+        min(
+            520px,
+            62vh
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ==================================================
+   Inspector 圖片
+   ================================================== */
+
+.memory-inspector-image {
+    position: relative;
+
+    z-index: 1;
+
+    display: block;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    user-select: none;
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 12px 30px
+            rgba(0, 0, 0, 0.65)
+        );
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s ease;
+}
+
+
+/* ==================================================
+   Inspector 熱點層
+   ================================================== */
+
+.memory-inspector-hotspots {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   Inspector 單一熱點
+   ================================================== */
+
+.memory-inspector-hotspot {
+    position: absolute;
+
+    width: 72px;
+    height: 72px;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    padding: 0;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.memory-inspector-hotspot:hover,
+.memory-inspector-hotspot:focus-visible {
+    border-color:
+        rgba(255, 232, 160, 0.55);
+
+    background:
+        rgba(255, 232, 160, 0.06);
+
+    box-shadow:
+        0 0 22px
+        rgba(255, 225, 130, 0.25);
+
+    outline: none;
+}
+
+
+.memory-inspector-hotspot.discovered {
+    border-color:
+        rgba(255, 232, 160, 0.3);
+}
+
+
+/* ==================================================
+   操作提示
+   ================================================== */
+
+.memory-inspector-hint {
+    margin:
+        16px
+        0
+        14px;
+
+    color:
+        rgba(225, 227, 240, 0.7);
+
+    font-size: 13px;
+
+    letter-spacing: 0.1em;
+}
+
+
+/* ==================================================
+   Inspector 按鈕
+   ================================================== */
+
+.memory-inspector-controls {
+    display: flex;
+
+    gap: 14px;
+}
+
+
+.memory-inspector-button {
+    min-width: 130px;
+
+    padding:
+        10px
+        20px;
+
+    border:
+        1px solid
+        rgba(190, 195, 235, 0.35);
+
+    background:
+        rgba(12, 14, 34, 0.9);
+
+    color: #e7e8f3;
+
+    cursor: pointer;
+
+    letter-spacing: 0.08em;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.memory-inspector-button:hover,
+.memory-inspector-button:focus-visible {
+    border-color:
+        rgba(255, 232, 160, 0.65);
+
+    color: #ffe89a;
+
+    background:
+        rgba(25, 25, 50, 0.95);
+
+    outline: none;
+}
+
+.memory-space {
+    transition:
+        filter 0.5s ease,
+        opacity 0.5s ease;
+}
+
+
+.memory-space.memory-scene-transition {
+    filter:
+        brightness(0.72)
+        blur(1px);
+}
+
+/* ==================================================
+   回憶動畫播放模式
+   ================================================== */
+
+/*
+ * 播放場景回憶時，
+ * 隱藏原本記憶空間中的探索 UI。
+ */
+
+#memory-space.memory-cutscene-active
+.memory-space-header,
+
+#memory-space.memory-cutscene-active
+#memory-objects,
+
+#memory-space.memory-cutscene-active
+.memory-dust {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+/*
+ * 標題與場景物件平滑消失。
+ */
+
+.memory-space-header,
+#memory-objects,
+.memory-dust {
+
+    transition:
+        opacity 0.45s ease;
+
+}
+
+/* ==================================================
+   小型回憶轉場
+   ================================================== */
+
+.memory-cutscene-transition {
+    position: absolute;
+    inset: 0;
+
+    z-index: 45;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 247, 220, 1) 0%,
+            rgba(230, 226, 255, 0.94) 45%,
+            rgba(150, 155, 205, 0.88) 100%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.65s ease;
+}
+
+
+.memory-cutscene-transition.visible {
+    opacity: 1;
+}
+
+/* ==================================================
+   刀子回憶：暈眩效果
+   ================================================== */
+
+#memory-space.knife-memory-dizziness {
+    animation:
+        knifeMemoryDizziness
+        0.22s
+        ease-in-out
+        infinite
+        alternate;
+
+    filter:
+        blur(1.5px)
+        brightness(0.8)
+        saturate(0.75);
+}
+
+
+#memory-space.knife-memory-dizziness-strong {
+    animation-duration:
+        0.11s;
+
+    filter:
+        blur(3px)
+        brightness(0.58)
+        saturate(0.55);
+}
+
+
+/* ==================================================
+   刀子記憶晃動
+   ================================================== */
+
+@keyframes knifeMemoryDizziness {
+
+    0% {
+        transform:
+            translate(-2px, 1px)
+            rotate(-0.12deg);
+    }
+
+    50% {
+        transform:
+            translate(2px, -1px)
+            rotate(0.12deg);
+    }
+
+    100% {
+        transform:
+            translate(-1px, -2px)
+            rotate(-0.08deg);
+    }
+
+}
+
+.death-memory-chapter-text.maoya-text {
+    color: #c89cff;
+
+    text-shadow:
+        0 0 14px rgba(190, 130, 255, 0.5),
+        0 2px 12px rgba(0, 0, 0, 0.95);
+}

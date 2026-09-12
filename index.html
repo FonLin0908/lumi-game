@@ -8,24 +8,20 @@
     <title>拾光者露米 | Lumi the Starlight Seeker</title>
 
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/prologue.css">
 </head>
 
 <body>
 
-    <!-- ==============================
-         遊戲主容器
-         ============================== -->
     <main id="game">
 
-        <!-- ==============================
+        <!-- ==================================================
              標題畫面
-             ============================== -->
+             ================================================== -->
         <section id="title-screen" class="screen">
 
-            <!-- 背景星光 -->
             <div class="star-background" aria-hidden="true"></div>
 
-            <!-- 標題畫面主要內容 -->
             <div class="title-content">
 
                 <div class="title-symbol">
@@ -48,7 +44,6 @@
                     星光會指引迷途之人
                 </p>
 
-                <!-- 主選單 -->
                 <nav class="main-menu" aria-label="主選單">
 
                     <button
@@ -83,7 +78,6 @@
 
             </div>
 
-            <!-- 版本資訊 -->
             <div class="game-version">
                 v0.1 Prototype
             </div>
@@ -91,9 +85,314 @@
         </section>
 
 
-        <!-- ==============================
+        <!-- ==================================================
+            序章
+            ================================================== -->
+        <section
+            id="prologue-screen"
+            class="screen hidden"
+            aria-hidden="true"
+        >
+
+            <!-- 序章文字開場 -->
+            <div id="prologue-intro">
+
+                <p
+                    id="prologue-intro-text"
+                    aria-live="polite"
+                ></p>
+
+            </div>
+
+
+            <!-- ==================================================
+                死亡記憶空間
+                ================================================== -->
+            <div
+                id="memory-space"
+                class="hidden"
+            >
+
+                <div
+                    class="memory-dust"
+                    aria-hidden="true"
+                ></div>
+
+                <!-- ==================================================
+                    小型回憶轉場
+                    ================================================== -->
+
+                <div
+                    id="memory-cutscene-transition"
+                    class="memory-cutscene-transition"
+                    aria-hidden="true"
+                ></div>
+
+
+                <!-- 記憶空間標題 -->
+                <div class="memory-space-header">
+
+                    <h2 class="memory-title">
+                        尋找散落的記憶
+                    </h2>
+
+                    <p class="memory-hint">
+                        點擊場景中的物件，找回遺失的記憶
+                    </p>
+
+                    <p
+                        id="memory-progress"
+                        class="memory-progress"
+                    >
+                        0 / 5
+                    </p>
+
+                </div>
+
+
+                <!--
+                    記憶物件會由
+                    memory-space.js
+                    動態產生。
+                -->
+                <div
+                    id="memory-objects"
+                    class="memory-objects"
+                ></div>
+
+                <!-- ==================================================
+                    記憶物件放大檢視
+                    ================================================== -->
+
+                <div
+                    id="memory-inspector"
+                    class="memory-inspector hidden"
+                >
+
+                    <div class="memory-inspector-backdrop"></div>
+
+
+                    <div class="memory-inspector-content">
+
+                        <!-- 標題 -->
+                        <p
+                            id="memory-inspector-title"
+                            class="memory-inspector-title"
+                        ></p>
+
+
+                        <!-- 物件 -->
+                        <div class="memory-inspector-object">
+
+                            <div class="memory-inspector-image-wrapper">
+
+                                <img
+                                    id="memory-inspector-image"
+                                    class="memory-inspector-image"
+                                    src=""
+                                    alt=""
+                                    draggable="false"
+                                >
+
+                                <div
+                                    id="memory-inspector-hotspots"
+                                    class="memory-inspector-hotspots"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- 操作提示 -->
+                        <p
+                            id="memory-inspector-hint"
+                            class="memory-inspector-hint"
+                        >
+                            點擊物件上的可疑位置進行調查
+                        </p>
+
+
+                        <!-- 操作按鈕 -->
+                        <div class="memory-inspector-controls">
+
+                            <button
+                                id="memory-inspector-flip"
+                                class="memory-inspector-button"
+                                type="button"
+                            >
+                                翻到背面
+                            </button>
+
+                            <button
+                                id="memory-inspector-close"
+                                class="memory-inspector-button"
+                                type="button"
+                            >
+                                結束調查
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 全部尋回後顯示 -->
+                <div
+                    id="memory-completion"
+                    class="memory-completion hidden"
+                >
+
+                    <div class="memory-completion-symbol">
+                        ✦
+                    </div>
+
+                    <p>
+                        記憶……正在連接。
+                    </p>
+
+                </div>
+
+
+                <!-- 記憶對話框 -->
+                <div
+                    id="memory-dialogue"
+                    class="memory-dialogue hidden"
+                >
+
+                    <div class="memory-dialogue-panel">
+
+                        <p
+                            id="memory-dialogue-name"
+                            class="memory-dialogue-name"
+                        ></p>
+
+                        <p
+                            id="memory-dialogue-text"
+                            class="memory-dialogue-text"
+                        ></p>
+
+                        <button
+                            id="memory-dialogue-next"
+                            class="memory-dialogue-next"
+                            type="button"
+                        >
+                            ▼
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- ==================================================
+                    記憶抉擇
+                    ================================================== -->
+                <div
+                    id="memory-choice"
+                    class="memory-choice hidden"
+                >
+                    <div class="memory-choice-panel">
+
+                        <p class="memory-choice-title">
+                            要面對這段記憶嗎？
+                        </p>
+
+                        <div class="memory-choice-buttons">
+
+                            <button
+                                id="memory-choice-face"
+                                class="memory-choice-button"
+                                type="button"
+                            >
+                                面對這段記憶
+                            </button>
+
+                            <button
+                                id="memory-choice-leave"
+                                class="memory-choice-button secondary"
+                                type="button"
+                            >
+                                還不是時候
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ==================================================
+                    記憶重組
+                    ================================================== -->
+                <div
+                    id="memory-puzzle"
+                    class="memory-puzzle hidden"
+                >
+
+                    <!-- 記憶重組標題 -->
+                    <div class="memory-puzzle-header">
+
+                        <h2 class="memory-puzzle-title">
+                            重組破碎的記憶
+                        </h2>
+
+                        <p class="memory-puzzle-hint">
+                            將彼此相關的記憶碎片放入中央
+                        </p>
+
+                    </div>
+
+
+                    <!-- 散落的記憶碎片 -->
+                    <div
+                        id="puzzle-fragments"
+                        class="puzzle-fragments"
+                    ></div>
+
+
+                    <!-- 中央記憶重組區 -->
+                    <div
+                        id="puzzle-reconstruction-zone"
+                        class="puzzle-reconstruction-zone"
+                    >
+
+                        <div
+                            class="puzzle-zone-symbol"
+                            aria-hidden="true"
+                        >
+                            ✦
+                        </div>
+
+                        <p class="puzzle-zone-title">
+                            記憶重組區
+                        </p>
+
+                        <p class="puzzle-zone-hint">
+                            將相關碎片放入這裡
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             畫面轉場
+             ================================================== -->
+        <div
+            id="screen-transition"
+            aria-hidden="true"
+        ></div>
+
+
+        <!-- ==================================================
              設定視窗
-             ============================== -->
+             ================================================== -->
         <div
             id="settings-modal"
             class="modal hidden"
@@ -108,7 +407,6 @@
                     設定
                 </h2>
 
-                <!-- 音樂音量 -->
                 <div class="setting-item">
 
                     <label for="music-volume">
@@ -137,7 +435,6 @@
                 </div>
 
 
-                <!-- 音效音量 -->
                 <div class="setting-item">
 
                     <label for="sfx-volume">
@@ -166,7 +463,6 @@
                 </div>
 
 
-                <!-- 文字速度 -->
                 <div class="setting-item">
 
                     <label for="text-speed">
@@ -195,7 +491,6 @@
                 </div>
 
 
-                <!-- 關閉 -->
                 <button
                     id="close-settings"
                     class="settings-close-button"
@@ -209,6 +504,18 @@
         </div>
 
     </main>
+
+
+    <!--
+        prologue.js 必須放在 main.js 前面，
+        因為 main.js 會呼叫 startPrologue()。
+    -->
+    <script src="./data/prologue/memories.js"></script>
+    <script src="./data/prologue/puzzle.js"></script>
+
+    <script src="./js/prologue/prologue.js"></script>
+    <script src="./js/prologue/memory-space.js"></script>
+    <script src="./js/prologue/memory-puzzle.js"></script>
 
     <script src="./js/main.js"></script>
 
