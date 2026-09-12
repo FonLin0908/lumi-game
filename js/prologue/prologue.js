@@ -450,15 +450,12 @@ function resetPrologueState() {
 
 
     /* ==================================================
-       6. 移除可能殘留的 Inspector / 最終動畫
-       ================================================== */
+    6. 清除可能殘留的最終動畫
+    ================================================== */
 
     document
         .querySelectorAll(
-            `
-            .memory-inspector,
-            .death-memory-scene
-            `
+            ".complete-death-memory"
         )
         .forEach(
             element => {
@@ -467,6 +464,56 @@ function resetPrologueState() {
 
             }
         );
+
+    /* ==================================================
+    7. 重置 Inspector
+    ================================================== */
+
+    const inspector =
+        document.querySelector(
+            "#memory-inspector"
+        );
+
+
+    const inspectorHotspots =
+        document.querySelector(
+            "#memory-inspector-hotspots"
+        );
+
+
+    const inspectorFlipButton =
+        document.querySelector(
+            "#memory-inspector-flip"
+        );
+
+
+    const inspectorCloseButton =
+        document.querySelector(
+            "#memory-inspector-close"
+        );
+
+
+    inspector?.classList.add(
+        "hidden"
+    );
+
+
+    if (inspectorHotspots) {
+
+        inspectorHotspots.innerHTML =
+            "";
+
+    }
+
+
+    inspectorFlipButton?.classList.remove(
+        "hidden"
+    );
+
+
+    inspectorCloseButton?.classList.remove(
+        "hidden"
+    );    
 
 
     console.log(
