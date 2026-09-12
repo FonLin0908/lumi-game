@@ -550,6 +550,11 @@ async function startNewGame() {
 
     await wait(1200);
 
+    await titleBgmFadePromise;
+
+    titleScreenBgm.pause();
+
+    titleScreenBgm.currentTime = 0;
 
     /*
      * 切換畫面。

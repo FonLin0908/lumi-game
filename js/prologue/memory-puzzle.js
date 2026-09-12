@@ -2577,7 +2577,7 @@ async function startCompleteDeathMemory() {
         character: "maoya",
 
         lines: [
-            "吃了妳……才能獲得拾光者的力量呀！"
+            "吃了妳……才能獲得拾光者的力量呢！"
         ]
 
     });
