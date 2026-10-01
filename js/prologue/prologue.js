@@ -35,6 +35,59 @@ memorySpaceExplorationBgm.volume =
     0.35;
 
 
+// ==================================================
+// 貓燁 Voice
+// ==================================================
+
+const maoyaVoice = {
+    foundLumi01: new Audio("./assets/audio/voice/maoya/found-lumi-01.mp3"),
+    foundLumi02: new Audio("./assets/audio/voice/maoya/found-lumi-02.mp3"),
+
+    hairpin01: new Audio("./assets/audio/voice/maoya/hairpin-01.mp3"),
+    hairpin02: new Audio("./assets/audio/voice/maoya/hairpin-02.mp3"),
+
+    finalBecause: new Audio("./assets/audio/voice/maoya/final-because.mp3"),
+    finalTruth: new Audio("./assets/audio/voice/maoya/final-truth.mp3")
+};
+
+Object.values(maoyaVoice).forEach(audio => {
+    audio.preload = "auto";
+    audio.volume = 0.9;
+});
+
+
+/* ==================================================
+   工具：播放配音
+   ================================================== */
+
+function playVoice(audio) {
+    return new Promise((resolve) => {
+
+        if (!audio) {
+            resolve();
+            return;
+        }
+
+        audio.pause();
+        audio.currentTime = 0;
+
+        const finish = () => {
+            audio.removeEventListener("ended", finish);
+            audio.removeEventListener("error", finish);
+            resolve();
+        };
+
+        audio.addEventListener("ended", finish);
+        audio.addEventListener("error", finish);
+
+        audio.play().catch(error => {
+            console.warn("語音播放失敗：", error);
+            finish();
+        });
+    });
+}
+
+
 /* ==================================================
    工具：等待
    ================================================== */

@@ -2085,8 +2085,14 @@ async function startCompleteDeathMemory() {
         character: "maoya",
 
         lines: [
-            "咦？你怎麼自己一個人在這裡？迷路了嗎？",
-            "那……要不要先跟我回家？"
+            {
+                text: "咦？你怎麼自己一個人在這裡？迷路了嗎？",
+                voice: maoyaVoice.foundLumi01
+            },
+            {
+                text: "那……要不要先跟我回家？",
+                voice: maoyaVoice.foundLumi02
+            }
         ]
 
     });
@@ -2219,8 +2225,14 @@ async function startCompleteDeathMemory() {
         character: "maoya",
 
         lines: [
-            "這個送給妳。",
-            "很適合妳吧？"
+            {
+                text: "這個送給妳。",
+                voice: maoyaVoice.hairpin01
+            },
+            {
+                text: "很適合妳吧？",
+                voice: maoyaVoice.hairpin02
+            }
         ]
 
     });
@@ -2515,20 +2527,26 @@ async function startCompleteDeathMemory() {
        最後答案前
        ================================================== */
 
-    await showDeathMemoryBlackText(
-        scene,
-        "因為……",
-        1500,
-        "maoya-text"
-    );
-
-
-    /*
-     * 讓「因為……」後面留真正的空白。
-     */
+    const becauseTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "因為……",
+            2500,
+            "maoya-text"
+        );
 
     await prologueWait(
-        650
+        250
+    );
+
+    await playVoice(
+        maoyaVoice.finalBecause
+    );
+
+    await becauseTextPromise;
+
+    await prologueWait(
+        400
     );
 
 
@@ -2577,7 +2595,10 @@ async function startCompleteDeathMemory() {
         character: "maoya",
 
         lines: [
-            "吃了妳……才能獲得拾光者的力量呢！"
+            {
+                text: "吃了妳……才能獲得拾光者的力量呢！",
+                voice: maoyaVoice.finalTruth
+            }
         ]
 
     });

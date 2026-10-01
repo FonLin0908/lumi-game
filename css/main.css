@@ -583,6 +583,230 @@ input {
 
 
 /* ==================================================
+   製作名單
+   ================================================== */
+
+.credits-panel {
+    width: min(560px, 92vw);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.credits-section-title {
+    margin:
+        10px
+        0
+        18px;
+
+    color: #b9c5ff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.35em;
+
+    transform: translateX(0.175em);
+}
+
+
+.cast-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+
+.cast-member {
+    display: grid;
+
+    grid-template-columns:
+        70px
+        1fr
+        auto;
+
+    align-items: center;
+
+    column-gap: 12px;
+
+    padding: 14px 18px;
+
+    border:
+        1px solid
+        rgba(180, 195, 255, 0.16);
+
+    background:
+        rgba(110, 125, 205, 0.06);
+}
+
+
+.cast-character {
+    margin: 0;
+
+    color: #fff0ad;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    letter-spacing: 0.12em;
+
+    white-space: nowrap;
+
+    text-align: left;
+}
+
+
+.cast-voice-actor {
+    margin: 0;
+
+    color: #d8dcf5;
+
+    font-size: 14px;
+
+    letter-spacing: 0.06em;
+
+    white-space: nowrap;
+
+    text-align: left;
+}
+
+
+.cast-social-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+}
+
+
+.cast-social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 28px;
+    height: 28px;
+
+    color: #b9c5ff;
+
+    text-decoration: none;
+
+    transition:
+        color 150ms ease,
+        transform 150ms ease,
+        filter 150ms ease;
+}
+
+
+.cast-social-link:hover,
+.cast-social-link:focus-visible {
+    color: #fff0ad;
+
+    transform: translateY(-2px);
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255, 232, 154, 0.35)
+        );
+
+    outline: none;
+}
+
+
+.cast-social-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* ==================================================
+   製作人員列表
+   ================================================== */
+
+.credits-list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 4px;
+
+    margin-bottom: 30px;
+
+    padding:
+        0
+        12px;
+}
+
+
+.credits-item {
+    display: grid;
+
+    grid-template-columns:
+        150px
+        minmax(0, 1fr);
+
+    align-items: start;
+
+    column-gap: 34px;
+
+    padding:
+        9px
+        0;
+
+    text-align: left;
+}
+
+
+.credits-role {
+    color: rgba(216, 220, 245, 0.65);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.08em;
+}
+
+
+.credits-name {
+    min-width: 0;
+
+    color: #d8dcf5;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.04em;
+}
+
+
+.credits-note {
+    display: block;
+
+    margin-top: 1px;
+
+    color: rgba(185, 197, 255, 0.55);
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    font-weight: 400;
+
+    letter-spacing: 0.06em;
+}
+
+
+/* ==================================================
    動畫
    ================================================== */
 
@@ -654,5 +878,80 @@ input {
         gap: 9px;
     }
 
+        .credits-panel {
+        width: 94vw;
+
+        max-height: 88vh;
+
+        padding:
+            26px
+            18px;
+    }
+
+
+    .cast-member {
+        grid-template-columns:
+            55px
+            minmax(0, 1fr)
+            auto;
+
+        column-gap: 8px;
+
+        padding:
+            12px
+            10px;
+    }
+
+
+    .cast-character {
+        font-size: 16px;
+    }
+
+
+    .cast-voice-actor {
+        font-size: 12px;
+
+        white-space: normal;
+    }
+
+
+    .cast-social-links {
+        gap: 4px;
+    }
+
+
+    .cast-social-link {
+        width: 25px;
+        height: 25px;
+    }
+
+
+    .cast-social-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    .credits-item {
+        grid-template-columns:
+            110px
+            minmax(0, 1fr);
+
+        column-gap: 10px;
+
+        padding:
+            7px
+            4px;
+    }
+
+
+    .credits-role {
+        font-size: 12px;
+    }
+
+
+    .credits-name {
+        font-size: 12px;
+    }
 }
 

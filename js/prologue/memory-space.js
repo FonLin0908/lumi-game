@@ -2768,27 +2768,14 @@ async function playHairpinMemory() {
         character: "maoya",
 
         lines: [
-            "這個送給你。",
-            "來，我幫你戴上。"
-        ]
-
-    });
-
-
-    await prologueWait(
-        250
-    );
-
-
-    await showMemoryDialogue({
-
-        mode: "cinematic",
-
-        character: "lumi",
-
-        lines: [
-            "真的可以給我嗎？",
-            "嘿嘿……我會好好珍惜的。"
+            {
+                text: "這個送給妳。",
+                voice: maoyaVoice.hairpin01
+            },
+            {
+                text: "很適合妳吧？",
+                voice: maoyaVoice.hairpin02
+            }
         ]
 
     });
@@ -3527,10 +3514,94 @@ function showMemoryDialogue(memory) {
                顯示目前這一句
                ================================================== */
 
+            let currentVoice = null;
+
+
+            function stopCurrentVoice() {
+
+                if (!currentVoice) {
+                    return;
+                }
+
+                currentVoice.pause();
+                currentVoice.currentTime = 0;
+
+                currentVoice = null;
+
+            }
+
+
             function showCurrentLine() {
 
-                text.textContent =
+                stopCurrentVoice();
+
+
+                const line =
                     memory.lines[lineIndex];
+
+
+                /*
+                * 舊格式：
+                *
+                * "普通台詞"
+                *
+                * 新格式：
+                *
+                * {
+                *     text: "有配音的台詞",
+                *     voice: audio
+                * }
+                */
+
+                if (
+                    typeof line === "string"
+                ) {
+
+                    text.textContent =
+                        line;
+
+                    return;
+
+                }
+
+
+                text.textContent =
+                    line.text ?? "";
+
+
+                if (!line.voice) {
+                    return;
+                }
+
+
+                currentVoice =
+                    line.voice;
+
+
+                currentVoice.pause();
+
+                currentVoice.currentTime =
+                    0;
+
+
+                /*
+                * 配音目前跟隨 SFX 音量。
+                */
+
+                currentVoice.volume =
+                    0.9 * getSfxVolumeScale();
+
+
+                currentVoice
+                    .play()
+                    .catch(error => {
+
+                        console.warn(
+                            "語音播放失敗：",
+                            error
+                        );
+
+                    });
 
             }
 
@@ -3565,6 +3636,8 @@ function showMemoryDialogue(memory) {
                ================================================== */
 
             function closeDialogue() {
+
+                stopCurrentVoice();
 
                 dialogue.classList.add(
                     "hidden"

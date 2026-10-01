@@ -72,6 +72,11 @@ const settingsButton =
         "#open-settings"
     );
 
+const creditsButton =
+    document.querySelector(
+        "#open-credits"
+    );
+
 
 /* ==================================================
    DOM：設定
@@ -118,6 +123,17 @@ const textSpeedValue =
     document.querySelector(
         "#text-speed-value"
     );
+
+const creditsModal =
+    document.querySelector(
+        "#credits-modal"
+    );
+
+
+const closeCreditsButton =
+    document.querySelector(
+        "#close-credits"
+    );    
 
 
 /* ==================================================
@@ -510,6 +526,32 @@ function closeSettings() {
 
 
 /* ==================================================
+   開啟製作名單
+   ================================================== */
+
+function openCredits() {
+
+    creditsModal.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* ==================================================
+   關閉製作名單
+   ================================================== */
+
+function closeCredits() {
+
+    creditsModal.classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* ==================================================
    開始新遊戲
    ================================================== */
 
@@ -620,6 +662,35 @@ settingsButton.addEventListener(
 );
 
 
+creditsButton.addEventListener(
+    "click",
+    openCredits
+);
+
+
+closeCreditsButton.addEventListener(
+    "click",
+    closeCredits
+);
+
+
+creditsModal.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target ===
+            creditsModal
+        ) {
+
+            closeCredits();
+
+        }
+
+    }
+);
+
+
 /* ==================================================
    設定事件
    ================================================== */
@@ -655,15 +726,29 @@ document.addEventListener(
     "keydown",
     (event) => {
 
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
         if (
-            event.key === "Escape"
-            &&
             !settingsModal
                 .classList
                 .contains("hidden")
         ) {
 
             closeSettings();
+
+        }
+
+
+        if (
+            !creditsModal
+                .classList
+                .contains("hidden")
+        ) {
+
+            closeCredits();
 
         }
 
