@@ -2042,11 +2042,25 @@ async function startCompleteDeathMemory() {
     );
     
        
-    await showDeathMemoryBlackText(
-        scene,
-        "那天你發現了我",
-        1900
+    const memoryFoundTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "那天……你發現了我",
+            2500
+        );
+
+
+    await prologueWait(
+        250
     );
+
+
+    await playVoice(
+        lumiVoice.memoryFound
+    );
+
+
+    await memoryFoundTextPromise;
 
 
     setDeathMemoryBackground(
@@ -2112,11 +2126,25 @@ async function startCompleteDeathMemory() {
        「後來我們一起生活」
        ================================================== */
 
-    await showDeathMemoryBlackText(
-        scene,
-        "後來我們一起生活",
-        1800
+    const memoryLifeTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "後來……我們一起生活。",
+            2500
+        );
+
+
+    await prologueWait(
+        250
     );
+
+
+    await playVoice(
+        lumiVoice.memoryLife
+    );
+
+
+    await memoryLifeTextPromise;
 
 
     setDeathMemoryBackground(
@@ -2149,11 +2177,25 @@ async function startCompleteDeathMemory() {
        「一起出去玩」
        ================================================== */
 
-    await showDeathMemoryBlackText(
-        scene,
-        "一起出去玩",
-        1800
+    const memoryOutingTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "一起出去玩。",
+            2500
+        );
+
+
+    await prologueWait(
+        250
     );
+
+
+    await playVoice(
+        lumiVoice.memoryOuting
+    );
+
+
+    await memoryOutingTextPromise;
 
 
     setDeathMemoryBackground(
@@ -2186,11 +2228,25 @@ async function startCompleteDeathMemory() {
        「你也送了我禮物」
        ================================================== */
 
-    await showDeathMemoryBlackText(
-        scene,
-        "你也送了我禮物",
-        1800
+    const memoryGiftTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "你也送了我禮物。",
+            2500
+        );
+
+
+    await prologueWait(
+        250
     );
+
+
+    await playVoice(
+        lumiVoice.memoryGift
+    );
+
+
+    await memoryGiftTextPromise;
 
 
     setDeathMemoryBackground(
@@ -2248,16 +2304,30 @@ async function startCompleteDeathMemory() {
        「我一直很喜歡，也很珍惜。」
        ================================================== */
 
-    await showDeathMemoryBlackText(
-        scene,
-        "我一直很喜歡，也很珍惜。",
-        2200
+    const memoryCherishTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "我一直……很喜歡，也很珍惜。",
+            3000
+        );
+
+
+    await prologueWait(
+        250
     );
 
 
+    await playVoice(
+        lumiVoice.memoryCherish
+    );
+
+
+    await memoryCherishTextPromise;
+
+
     /*
-     * 黑畫面繼續停留。
-     */
+    * 黑畫面繼續停留。
+    */
 
     await prologueWait(
         800
@@ -2268,32 +2338,84 @@ async function startCompleteDeathMemory() {
        轉折
        ================================================== */
 
+    /*
+    * 暖 BGM 開始淡出。
+    * 不 await，讓淡出與「但……」同時發生。
+    */
+
     fadeOutAudio(
         warmMemoryBgm,
         1400
     );
 
-    await showDeathMemoryBlackText(
-        scene,
-        "但……",
-        1200
-    );
+
+    /* ==================================================
+    「但……」
+    ================================================== */
+
+    const memoryButTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "但……",
+            2200
+        );
 
 
     await prologueWait(
-        300
+        250
     );
 
 
-    await showDeathMemoryBlackText(
-        scene,
-        "直到那天……",
-        1600
+    await playVoice(
+        lumiVoice.memoryBut
     );
+
+
+    await memoryButTextPromise;
+
+
+    /*
+    * 這裡刻意留白。
+    * 讓「但……」真的有記憶停住的感覺。
+    */
+
+    await prologueWait(
+        700
+    );
+
+
+    /* ==================================================
+    「直到……那天……」
+    ================================================== */
+
+    const memoryThatDayTextPromise =
+        showDeathMemoryBlackText(
+            scene,
+            "直到……那天……",
+            2800
+        );
 
 
     await prologueWait(
-    450
+        250
+    );
+
+
+    await playVoice(
+        lumiVoice.memoryThatDay
+    );
+
+
+    await memoryThatDayTextPromise;
+
+
+    /*
+    * 語音與字幕結束後稍微停一下，
+    * 再進刀刃聲。
+    */
+
+    await prologueWait(
+        450
     );
 
 
@@ -2396,11 +2518,20 @@ async function startCompleteDeathMemory() {
        「為……為什麼……？」
        ================================================== */
 
-    await showDeathMemoryBlackText(
-        scene,
-        "為……為什麼……？",
-        1800
-    );
+    await showMemoryDialogue({
+
+        mode: "cinematic",
+
+        character: "lumi",
+
+        lines: [
+            {
+                text: "為……為什麼……？",
+                voice: lumiVoice.finalWhy
+            }
+        ]
+
+    });
 
 
     /* ==================================================

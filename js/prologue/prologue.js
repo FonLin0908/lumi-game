@@ -56,6 +56,59 @@ Object.values(maoyaVoice).forEach(audio => {
 });
 
 
+// ==================================================
+// 露米 Voice
+// ==================================================
+
+const lumiVoice = {
+    memoryFound:
+        new Audio(
+            "./assets/audio/voice/lumi/memory-found.mp3"
+        ),
+
+    memoryLife:
+        new Audio(
+            "./assets/audio/voice/lumi/memory-life.mp3"
+        ),
+
+    memoryOuting:
+        new Audio(
+            "./assets/audio/voice/lumi/memory-outing.mp3"
+        ),
+
+    memoryGift:
+        new Audio(
+            "./assets/audio/voice/lumi/memory-gift.mp3"
+        ),
+
+    memoryCherish:
+        new Audio(
+            "./assets/audio/voice/lumi/memory-cherish.mp3"
+        ),
+
+    memoryBut:
+        new Audio(
+            "./assets/audio/voice/lumi/memory-but.mp3"
+        ),
+
+    memoryThatDay:
+        new Audio(
+            "./assets/audio/voice/lumi/memory-that-day.mp3"
+        ),
+
+    finalWhy:
+        new Audio(
+            "./assets/audio/voice/lumi/final-why.mp3"
+        )
+};
+
+
+Object.values(lumiVoice).forEach(audio => {
+    audio.preload = "auto";
+    audio.volume = 0.9;
+});
+
+
 /* ==================================================
    工具：播放配音
    ================================================== */
